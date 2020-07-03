@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/own.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body class="body">
+
+<!--  &lt;!&ndash; Add your site or application content here &ndash;&gt;-->
+<!--  <p>Hello world! This is HTML5 Boilerplate.</p>-->
+<!--  <script src="js/vendor/modernizr-3.11.2.min.js"></script>-->
+<!--  <script src="js/plugins.js"></script>-->
+<!--  <script src="js/main.js"></script>-->
+
+<!--  &lt;!&ndash; Google Analytics: change UA-XXXXX-Y to be your site's ID. &ndash;&gt;-->
+<!--  <script>-->
+<!--    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;-->
+<!--    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')-->
+<!--  </script>-->
+<!--  <script src="https://www.google-analytics.com/analytics.js" async></script>-->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="ECMWF-Chatbot"
+  agent-id="8fa73db1-b55e-4095-b76d-c40d0d0334ab"
+  language-code="en"
+></df-messenger>
+
+
+<script>
+
+  const dfMessenger = document.querySelector('df-messenger');
+
+
+  const payload = [
+    {
+      "type": "info",
+      "title": "Info item title",
+      "subtitle": "Info item subtitle",
+      "image": {
+        "src": {
+          "rawUrl": "https://example.com/images/logo.png"
+        }
+      },
+      "actionLink": "https://example.com"
+    }];
+
+
+  dfMessenger.addEventListener('df-chip-clicked', function (event) {
+    event.cancelBubble = true;
+    event.bubbles = false;
+    event.stopPropagation();
+    console.log(event)
+    event.detail = {query: "cams"}
+
+  });
+
+
+  dfMessenger.addEventListener('df-button-clicked', function (event) {
+    event.cancelBubble = true;
+    event.cancelable = true;
+    event.bubbles = false;
+    event.preventDefault = () => {
+      return false
+    };
+    event.composed = false;
+    event.stopImmediatePropagation()
+    event.stopPropagation();
+    event.returnValue = false;
+    event = {};
+
+  });
+
+  // window.addEventListener('df-button-clicked', function (event) {
+  //   event.stopPropagation();
+  //   console.log(event)
+  // });
+
+
+  dfMessenger.addEventListener('df-request-sent', function (event) {
+
+    console.log(event)
+
+
+    // dfMessenger.renderCustomCard(payload);
+
+  });
+</script>
+
+</body>
+
+</html>
